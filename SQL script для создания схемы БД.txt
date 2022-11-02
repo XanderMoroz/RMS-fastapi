@@ -1,0 +1,13 @@
+CREATE TABLE users (
+	id INTEGER NOT NULL,
+	login VARCHAR(128),
+	password VARCHAR(128),
+	name VARCHAR(128),
+	birth DATE,
+	phone INTEGER,
+	tg VARCHAR(128),
+	email VARCHAR(128),
+	PRIMARY KEY (id)
+);
+
+CREATE INDEX ix_users_id ON users (id);
