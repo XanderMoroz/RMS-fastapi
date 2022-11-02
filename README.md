@@ -22,7 +22,7 @@ All URIs are relative to */*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_user**] | **POST** /v1/auth/register | Добавление нового пользователя
-[**auth_user**] | **PATCH** /v1/auth/login |  Аутентификация пользователя перевала
+[**auth_user**] | **PATCH** /v1/auth/login |  Аутентификация пользователя
 [**read_user**] | **GET** //v1/user/{user_id}/ | Извлечение данных о пользователе
 
 ## Инструкция по установке 
