@@ -1,37 +1,44 @@
 from typing import Union
 
-from pydantic import BaseModel
+from pydantic import BaseModel, validator
 
+from datetime import datetime, date
 
-class ItemBase(BaseModel):
-    title: str
-    description: Union[str, None] = None
+class UserCreate(BaseModel):
+    """Схема запроса для создания экземпляра пользователя согласно задаче №1:"""
+    phone: str
+    login: str
+    password: str
+    name: str
+    birth: date
+    tg: str = None
+    email: str = None
 
+    @validator('birth')
+    def check_date_of_birth(cls, value):
+        """Проверка возраста пользователя"""
+        if datetime.now().year - value.year < 18:
+            raise ValueError('В сервисе не должны быть зарегистрированы несовершеннолетние.')
 
-class ItemCreate(ItemBase):
-    pass
-
-
-class Item(ItemBase):
+class UserID(BaseModel):
+    """Схема ответа согласно задаче №1, 2:
+    возвращает json с идентификатором пользователя"""
     id: int
-    owner_id: int
 
     class Config:
         orm_mode = True
 
-
-class UserBase(BaseModel):
+class UserResponse(UserID):
+    """Схема ответа согласно задаче №3:
+    возвращает json со всеми полями пользователя (кроме пароля)"""
+    phone: str
+    login: str
+    name: str
+    birth: date
+    tg: str
     email: str
 
 
-class UserCreate(UserBase):
-    password: str
 
 
-class User(UserBase):
-    id: int
-    is_active: bool
-    items: list[Item] = []
 
-    class Config:
-        orm_mode = True
