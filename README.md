@@ -21,10 +21,9 @@ All URIs are relative to */*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**submit_data_create**](docs/SubmitDataApi.md#submit_data_create) | **POST** /submitData | Добавление перевала
-[**submit_data_partial_update**](docs/SubmitDataApi.md#submit_data_partial_update) | **PATCH** /submitData/{id}/ |  Редактирование перевала
-[**submit_data_retrieve**](docs/SubmitDataApi.md#submit_data_retrieve) | **GET** /submitData/{id}/ | Извлечение данных о перевале
-[**submit_data_user_email_list**](docs/SubmitDataApi.md#submit_data_user_email_list) | **GET** /submitData/user__email&#x3D;{email} | Извлечение списка перевалов пользователя
+[**create_user**] | **POST** /v1/auth/register | Добавление нового пользователя
+[**auth_user**] | **PATCH** /v1/auth/login |  Аутентификация пользователя перевала
+[**read_user**] | **GET** //v1/user/{user_id}/ | Извлечение данных о пользователе
 
 ### Инструкция по установке 
 
@@ -51,7 +50,7 @@ pip install -r requirements.txt
 ```
 6. Запускаете сервер
 ```sh
-python manage.py runserver
+uvicorn sql_app.main:app --reload --port 8080
 ```
 7. Наслаждаетесь результатом)
 
